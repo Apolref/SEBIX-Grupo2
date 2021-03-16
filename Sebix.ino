@@ -1,7 +1,7 @@
 #define NumberOfSeconds(_time_)((_time_/300-4))
 
-#include <LiquidCrystal.h> //biblioteca para usar o lcd
-#include <EEPROM.h> //biblioteca para salvar dados no arduino
+#include <LiquidCrystal.h> // Biblioteca para usar o lcd
+#include <EEPROM.h> // Biblioteca para salvar dados no arduino
 
 
 #define NOTE_B0  31
@@ -97,19 +97,17 @@
  
 #define melodyPin 8
 
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2); //onde as entradas do lcd estão no arduino
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // Onde as entradas do lcd estão no arduino
 
-int pino_start = 1; //pino do arduino ligado ao botao start
+int pino_start = 1; // Pino do arduino ligado ao botão start
 int estado_start = 0; 
 
 int pulando = 0;
 
-int address = 0;    
-int value;
+int address = 0;  
+int value
 
-
-
-//Underworld melody
+// Underworld melody 
 int underworld_melody[] = {
   NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
   NOTE_AS3, NOTE_AS4, 0,
@@ -158,7 +156,7 @@ int underworld_tempo[] = {
 int song = 0;
  
 
-//pixels do dinossauro com dois pés
+// Pixels do dinossauro com dois pés
 byte dino[8] = {
   B00111,
   B00101,
@@ -203,7 +201,7 @@ byte cacto[8] = {
   B11111
 };
 
-//pixels da cobra
+// Pixels da cobra
 byte cobra[8] = {
   B00000,
   B00000,
@@ -215,47 +213,48 @@ byte cobra[8] = {
   B11111
 };
 
-//pixels do passáro
+// Pixels do passáro
 
 byte passaro[8] = {
-	B00000,
+    B00000,
     B00100,
     B00110,
-	B01110,
-	B11111,
-	B00000,
+    B01110,
+    B11111,
     B00000,
-	B00000
+    B00000,
+    B00000
 };
 
-//pixels do dino caido
+// Pixels do dino caido
 
 byte dino_caido1[8] = {
-	B00000,
     B00000,
     B00000,
-	B00000,
-	B00011,
-	B00111,
+    B00000,
+    B00000,
     B00011,
-	B00111
+    B00111,
+    B00011,
+    B00111
 };
  
 byte dino_caido2[8] = {
-	B00000,
     B00000,
     B00000,
-	B00000,
-	B00000,
-	B11111,
+    B00000,
+    B00000,
+    B00000,
+    B11111,
     B11101,
-	B10111
+    B10111
 };
 
 void setup() {
   lcd.begin(16, 2);
   pinMode(8, OUTPUT);
-  //Criação dos desenhos a serem utilizados
+	
+  // Criação dos desenhos a serem utilizados
   lcd.createChar(0, dino);
   lcd.createChar(1, dino_caido1);
   lcd.createChar(2, dino_caido2);
@@ -268,7 +267,6 @@ void setup() {
   pinMode(pino_start, INPUT);
   estado_start = 0;
   pulando = 0;
-  
 }
 
 void loop() {
@@ -279,11 +277,10 @@ void loop() {
     long unsigned anterior = millis();
   	cenario();
   	scroll(anterior);
-   
   }
 }
 
-int CasasDec(int seconds){ // contar quantas casas decimais tem score
+int CasasDec(int seconds){ // Contar quantas casas decimais têm score
   int i = 1;
   while (seconds/10>0){
     seconds=seconds/10;
@@ -292,24 +289,24 @@ int CasasDec(int seconds){ // contar quantas casas decimais tem score
   return i;
 }
 
-int count(int seconds){ // printar o score
-  int score= seconds;
+int count(int seconds){ // Printar o score
+ int score= seconds;
  value = EEPROM.read(address);
-  if(score>=value){
+ if(score>=value){
     EEPROM.write(address,score);
     value=score;
-    }
+ }
   
-  int position=15;
-  int quant = CasasDec(seconds);
-  position=position - quant + 1;
-  lcd.setCursor(position,0);
-  lcd.print(seconds);
+ int position=15;
+ int quant = CasasDec(seconds);
+ position=position - quant + 1;
+ lcd.setCursor(position,0);
+ lcd.print(seconds);
   
-  return value;
+ return value;
 }
 
-void sing(int s) { // toca as notas do mario 
+void sing(int s) { // Toca as notas do Mario 
   
   song = s;
   if (song == 2) {
@@ -327,7 +324,7 @@ void sing(int s) { // toca as notas do mario
   } 
 }
  
-void buzz(int targetPin, long frequency, long length) { // controla a frequenica do buzzer
+void buzz(int targetPin, long frequency, long length) { // Controla a frequência do buzzer
   digitalWrite(13, HIGH);
   long delayValue = 1000000 / frequency / 2; 
   long numCycles = frequency * length / 1000; 
@@ -341,7 +338,7 @@ void buzz(int targetPin, long frequency, long length) { // controla a frequenica
  
 }
 
-void tela_inicial() { //Cria a tela inicial do jogo
+void tela_inicial() { // Cria a tela inicial do jogo
   lcd.setCursor(3,0);
   lcd.print("SEBIX GAME");
   
@@ -350,7 +347,7 @@ void tela_inicial() { //Cria a tela inicial do jogo
   
 }
 
-void cenario() { //cria o cenário inical, dino e chão
+void cenario() { // Cria o cenário inical, dino e chão
   lcd.clear();
   delay(30);
 
@@ -364,7 +361,7 @@ void cenario() { //cria o cenário inical, dino e chão
   delay(1000);
 }
 
-void dino_pula() { //função do pulo, vai apagando e desenhando o dino nos devidos locais
+void dino_pula() { // Função do pulo, vai apagando e desenhando o dino nos devidos locais
   estado_start = digitalRead(pino_start);
   
   if(estado_start == HIGH) {
@@ -391,7 +388,7 @@ void dino_caindo() {
     pulando = 0;
 }
 
-int obstaculo_aparece() { // Switch case que seleciona um obstacul aleatoriamente
+int obstaculo_aparece() { // Switch case que seleciona um obstaculo aleatoriamente
   int obstaculo;
   
   randomSeed(analogRead(A0));
@@ -410,7 +407,7 @@ int obstaculo_aparece() { // Switch case que seleciona um obstacul aleatoriament
   return(obstaculo);
 }  
 
-void scroll(long unsigned anterior) { //Função que move o cenário, tanto o chao quanto os obstaculos
+void scroll(long unsigned anterior) { //Função que move o cenário, tanto o chao quanto os obstáculos
   int aux1 = obstaculo_aparece();
   int aux2 = obstaculo_aparece();
   int aux3 = obstaculo_aparece();
@@ -439,7 +436,7 @@ void scroll(long unsigned anterior) { //Função que move o cenário, tanto o ch
       	lcd.setCursor(j + 1,0);
     	lcd.write(' '); 
     } else {
-		lcd.setCursor(j,1);
+	lcd.setCursor(j,1);
     	lcd.write(byte(aux2));
       
       	lcd.setCursor(j + 1,1);
@@ -453,7 +450,7 @@ void scroll(long unsigned anterior) { //Função que move o cenário, tanto o ch
       	lcd.setCursor(k + 1,0);
     	lcd.write(' '); 
     } else {
-		lcd.setCursor(k,1);
+	lcd.setCursor(k,1);
     	lcd.write(byte(aux3));
       
       	lcd.setCursor(k + 1,1);
@@ -463,9 +460,9 @@ void scroll(long unsigned anterior) { //Função que move o cenário, tanto o ch
     unsigned long time= millis();
     unsigned long teste= time-anterior;
     int seconds = NumberOfSeconds(teste);
-    int high = count(seconds);//função para fzr rodar o score no display
+    int high = count(seconds); // Função para rodar o score no display
     
-    if (i == -1){// Permite o aparecimento de novos obstaculos
+    if (i == -1){ // Permite o aparecimento de novos obstáculos
 	 i = j;
      aux1 = aux2;
      
@@ -502,7 +499,7 @@ void scroll(long unsigned anterior) { //Função que move o cenário, tanto o ch
   }
 }
 
-void perdeu(int high) { //Configuração da tela final após perder
+void perdeu(int high) { // Configuração da tela final após perder
   lcd.clear();
   delay(50);
   tela_game_over();
@@ -521,7 +518,7 @@ void tela_game_over() { // Print da tela game over
   lcd.write(2);
 }
 
-void tela_best_score(int high) { //Print tela final com o top score
+void tela_best_score(int high) { // Print tela final com o top score
   lcd.clear();
   
   lcd.setCursor(1,0);
