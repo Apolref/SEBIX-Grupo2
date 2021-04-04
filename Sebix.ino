@@ -105,7 +105,7 @@ int estado_start = 0;
 int pulando = 0;
 
 int address = 0;  
-int value
+int value;
 
 // Underworld melody 
 int underworld_melody[] = {
