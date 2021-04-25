@@ -5,7 +5,7 @@ Projeto desenvolvido pelo novos membros do Grupo ADA - Projetos em Engenharia de
 Criação de um jogo em Arduino dentro de uma carcaça, baseado no T-Rex Runner presente no Google Chrome quando este é acessado sem o aparelho estar conectado a uma rede de internet.
 
 ## Tecnologias Usadas
-Para o desenvolvimento do jogo utilizou-se um microprocessador Arduino Uno e para a interface do jogo utilizou-se uma LCD 16X2. Após a conclusão do programa,por meio do software Eagle, elaborou-se a placa PCB e, por meio da impressora 3D, criou-se o revestimento do jogo.
+Para o desenvolvimento do jogo utilizou-se um microprocessador Arduino Uno e para a interface do jogo utilizou-se uma LCD 16X2. Após a conclusão do programa, por meio do software Eagle, elaborou-se a placa PCB e, por meio da impressora 3D, criou-se o revestimento do jogo.
 
 ## Protótipo
 
