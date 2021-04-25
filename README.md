@@ -15,9 +15,9 @@ Como o projeto foi desenvolvido de forma remota, o protótipo do projeto foi cri
 
 
 ## Membros
-Alexandre Lopes
-Daniel Martins
-Pedro Lucas Andrade
+Alexandre Lopes \
+Daniel Martins \
+Pedro Lucas Andrade \
 
 ## Agradecimentos
 Juliana Freitas
